@@ -29,6 +29,21 @@
         } else {
             echo "ID tidak valid.";
         }
+    } elseif ($aksi == 'hapus') {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $query = "DELETE FROM anggota where id=$id";
+            if (mysqli_query($koneksi, $query)) {
+                header("Location: indeks.php");
+                exit();
+            } else {
+                echo "Gagal menghapus data: ". mysqli_error($koneksi);
+            }
+        } else {
+            header("ID tidak valid.");
+        }
+    } else {
+        header("Location: indeks.php");
     }
 mysqli_close($koneksi);
 ?>
